@@ -47,6 +47,8 @@ $ lite-http-tunnel config server https://your_web_host_domain
 
 ```shell
 $ lite-http-tunnel auth $JWT_GENERATOR_USERNAME $JWT_GENERATOR_PASSWORD
+
+lite-http-tunnel auth abc abc
 ```
 
  > Replace `$JWT_GENERATOR_USERNAME` and `$JWT_GENERATOR_PASSWORD` with values that you provide at tunnel server
