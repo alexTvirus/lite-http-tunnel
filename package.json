@@ -11,7 +11,8 @@
   },
   "license": "GPL-3.0",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "deploy": "wrangler deploy server.js"
   },
   "dependencies": {
     "dotenv": "^16.0.0",
