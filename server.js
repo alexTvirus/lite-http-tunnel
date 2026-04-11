@@ -19,6 +19,8 @@ const httpServer = http.createServer(app);
 const webTunnelPath = '/$web_tunnel';
 const io = new Server(httpServer, {
   path: webTunnelPath,
+  pingTimeout: 100000000, // Chờ rất lâu mới coi là mất kết nối
+  pingInterval: 1500,    // Gửi ping liên tục để duy trì "sự sống"
 });
 
 let tunnelSockets = {};
