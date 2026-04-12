@@ -62,6 +62,25 @@ io.on('connection', (socket) => {
   socket.once('disconnect', onDisconnect);
 });
 
+app.get('/reset', (req, res) => {
+  for (let connectHost in tunnelSockets) {
+    const socket = tunnelSockets[connectHost];
+
+    // 1. Ngắt kết nối socket (tùy vào thư viện bạn dùng như net, socket.io, ws)
+    if (socket && typeof socket.destroy === 'function') {
+        socket.destroy(); // Dùng cho module 'net' của Node.js
+    } else if (socket && typeof socket.close === 'function') {
+        socket.close();   // Dùng cho WebSocket hoặc Socket.io
+    }
+
+    // 2. Xóa khỏi object
+    delete tunnelSockets[connectHost];
+}
+  tunnelSockets = {}
+   res.status(200);
+  res.send('ok');
+})
+
 app.use(morgan('tiny'));
 app.get('/tunnel_jwt_generator', (req, res) => {
   if (!JWT_GENERATOR_USERNAME || !JWT_GENERATOR_PASSWORD) {
